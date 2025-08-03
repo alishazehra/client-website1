@@ -4,20 +4,8 @@
 >
   <template v-slot:default="{ dragHover }">
     <v-app>
-      <v-navigation-drawer
-        v-model="controlsDrawer"
-        :clipped="$vuetify.breakpoint.mdAndUp"
-        :mobile-breakpoint="$vuetify.breakpoint.thresholds.sm"
-        app
-        fixed
-        disable-resize-watcher
-        touchless
-        width="300"
-      >
-        <controls-drawer />
-      </v-navigation-drawer>
 
-      <v-app-bar app clipped-left>
+      <!-- <v-app-bar app clipped-left>
         <v-app-bar-nav-icon
           :disabled="landingVisible"
           @click.native.stop="controlsDrawer = !controlsDrawer"
@@ -25,7 +13,7 @@
         <v-tooltip
           bottom
           :disabled="smallScreen"
-        >
+        > -->
           <template v-slot:activator="{ on }">
             <a
               href="#"
@@ -39,7 +27,7 @@
               />
             </a>
           </template>
-          <span v-if="landingVisible" key="if-landingVisible">Go to app</span>
+          <span v-if="landingVisible" key="if-landingVisible"></span>
           <span v-else key="if-landingVisible">Back to landing page</span>
         </v-tooltip>
         <v-spacer />
@@ -114,36 +102,20 @@
         <layout-view v-else key="if-landing" />
       </v-content>
 
-      <v-navigation-drawer
-        v-model="screenshotsDrawer"
-        :stateless="screenshotsDrawerStateless"
-        app
-        right
-        temporary
-        touchless
-        width="300"
-      >
-        <screenshots
-          v-on:screenshot-count="screenshotCount = $event"
-          v-on:close="screenshotsDrawer = false"
-        />
-      </v-navigation-drawer>
-
       <!-- file loader -->
       <file-loader
         v-model="fileUploadDialog"
         v-on:load="doneLoadingFiles"
       />
 
+      <!-- autoload dialog -->
       <v-dialog v-model="autoloadDialog" persistent width="60%">
         <v-card class="pa-4">
           <v-card-title
             class="justify-center text-center title black--text pv-break-word"
           >
             Loading {{ autoloadLabel }}&nbsp;
-            <span v-if="fileLoadingProgress === 1">
-              (reading...)
-            </span>
+            <span v-if="fileLoadingProgress === 1">(reading...)</span>
             <span v-else-if="fileLoadingProgress !== Infinity">
               ({{ Math.round(fileLoadingProgress * 100) }}%)
             </span>
@@ -157,10 +129,8 @@
         </v-card>
       </v-dialog>
 
-      <!-- state generator -->
       <state-file-generator />
 
-      <!-- dnd overlay -->
       <div
         :class="{ [$style.overlay]: true, [$style.overlayVisible]: dragHover }"
       >
@@ -170,10 +140,8 @@
         </div>
       </div>
 
-      <!-- browser issues -->
       <browser-issues />
 
-      <!-- about dialog -->
       <component
         :is="dialogType"
         v-model="aboutDialog"
@@ -182,7 +150,6 @@
         <about-box v-on:close="aboutDialog = false" />
       </component>
 
-      <!-- error dialog-->
       <component
         :is="dialogType"
         v-model="errorDialog"
@@ -207,7 +174,6 @@
         <v-btn text>close</v-btn>
       </v-snackbar>
 
-      <!-- portal mount point -->
       <div id="app-portal-mount" />
     </v-app>
   </template>

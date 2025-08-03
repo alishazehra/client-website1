@@ -2,7 +2,7 @@
   display: block;
   padding: 4px 16px;
   box-sizing: border-box;
-  background: white;
+  background: pink;
   min-width: 300px;
   overflow: auto;
 }

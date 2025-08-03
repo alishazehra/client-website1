@@ -14,7 +14,7 @@
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   pointer-events: none;
-  color: white !important;
+  color: pink !important;
   mix-blend-mode: exclusion;
 }
 
