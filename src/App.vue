@@ -1,19 +1,11 @@
 <template>
-  <div id="app">
-    <h1>Hello Glance!</h1>
-  </div>
+  <Landing />
 </template>
 
 <script>
+import Landing from './components/core/Landing.vue'
+
 export default {
-  name: 'App',
+  components: { Landing }
 }
 </script>
-
-<style scoped>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  text-align: center;
-  margin-top: 60px;
-}
-</style>
